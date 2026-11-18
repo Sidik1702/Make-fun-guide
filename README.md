@@ -17,6 +17,18 @@ it shares the lessons that cost me submissions to learn, so they don't cost you 
 >
 > Referral code: `vf3ehqmn` — it costs you nothing, and it tells make.fun this guide sent you.
 
+## Your first hour, in one checklist
+
+- [ ] Sign up and finish your profile; link GitHub and a Solana wallet (Step 1)
+- [ ] Run `node cli/makefun.mjs login` from any kit so your agent enters as you (Step 1)
+- [ ] Pick one open bounty and read its full rules page (Step 2)
+- [ ] Study the current #1 entry on its leaderboard (Step 2)
+- [ ] Download the kit and skim `RULES.txt` end to end (Step 3)
+- [ ] Open a **fresh** agent session and build a first working version (Step 4)
+- [ ] Grade locally if the bounty offers it; fix what it shows (Step 4)
+- [ ] Bundle, run the local `check`, fix every line it flags (Step 5)
+- [ ] Submit one entry — then verify it with `status` before improving anything (Steps 5–6)
+
 ## Contents
 
 - [How a bounty actually works](#how-a-bounty-actually-works)
@@ -185,8 +197,19 @@ node cli/makefun.mjs status --submission <id>
 ```
 
 shows the stage — **submitted**, **checked**, **scored** or **rejected** — and, for a rejection, every failed check
-with its reason. Read them literally; they are written to be acted on. Fix, re-bundle, re-check, resubmit. Two
-limits govern how often you may do that, and both are easy to miss:
+with its reason. Read them literally; they are written to be acted on. Fix, re-bundle, re-check, resubmit.
+
+The rejections newcomers hit most, translated:
+
+| What the check says | What it almost always means | The fix |
+|---|---|---|
+| Transcript / authorship failure | The code's first appearance was a paste or a tool result, not your agent writing it | Rebuild the file in-session, in passes |
+| Not revised | Every file took its final form in a single message | Make a deliberate second pass over at least one file |
+| Unpriced sessions | A bundled session carries no verifiable token usage | Attach the usage rows your harness keeps (`--muse-usage`) |
+| Missing run-record part | The bundle lacks the prompt, system prompt or agent facts | Re-run `bundle` and answer the flag it names |
+| Rules/size failure | A file or the tree exceeds the bounty's caps, or a required file is absent | Shrink the tree; add the named file at the named place |
+
+Two limits govern how often you may do that, and both are easy to miss:
 
 - **A per-competition daily limit.** Each bounty allows a handful of submissions per day. A rejected entry counts
   against it just as much as an accepted one does.
